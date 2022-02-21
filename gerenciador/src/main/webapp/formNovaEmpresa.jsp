@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <c:url value="/entrada" var="linkEntradaServlet"/>
+
 
 <!DOCTYPE html>
 <html>
@@ -15,10 +17,10 @@
 <body>
 
 	<form action="${linkEntradaServlet }" method="post">
-		<input type="hidden" name="id" value="${empresa.id }"/>
-		<input type="hidden" name="acao" value="AlteraEmpresa"/>
-		Nome: <input type="text" name="nome" value="${empresa.nome }"/>
-		Data Abertura: <input type="text" name="data" value="<fmt:formatDate value="${empresa.dataAbertura}" pattern="dd/MM/yyyy"/>" /> 
+		
+		Nome: <input type="text" name="nome" />
+		Data Abertura: <input type="text" name="data" />
+		<input type="hidden" name="acao" value="NovaEmpresa" />
 		<input type="submit" />
 	
 	</form>
