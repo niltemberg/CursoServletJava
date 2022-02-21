@@ -30,35 +30,34 @@ public class UnicaEntradaServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String paramAcao = request.getParameter("acao");
+		String nome = null;
 		
 		if(paramAcao.equals("ListaEmpresas")) {
-			
 			ListaEmpresas acao = new ListaEmpresas();
-			acao.executa(request, response);
-			
-			
+			nome = acao.executa(request, response);
 		}else if(paramAcao.equals("MostraEmpresa")) {
-			
 			MostraEmpresa acao = new MostraEmpresa();
-			acao.executa(request, response);
-			
+			nome = acao.executa(request, response);
 		}else if(paramAcao.equals("RemoveEmpresa")) {
-			
 			RemoveEmpresa acao = new RemoveEmpresa();
-			acao.executa(request, response);
-
-			
+			nome = acao.executa(request, response);
 		}else if(paramAcao.equals("AlteraEmpresa")) {
-			
 			AlteraEmpresa acao = new AlteraEmpresa();
-			acao.executa(request, response);
-	
+			nome = acao.executa(request, response);
 		}else if(paramAcao.equals("NovaEmpresa")) {
-			
 			NovaEmpresa acao = new NovaEmpresa();
-			acao.executa(request, response);
+			nome = acao.executa(request, response);
 		}
 		
+		String[] tipoNomeEndereco = nome.split(":");
+		
+		if(tipoNomeEndereco[0].equals("forward")) {
+			RequestDispatcher rd = request.getRequestDispatcher(tipoNomeEndereco[1]);
+			rd.forward(request, response);
+		}else {
+			//redirecionar página
+			response.sendRedirect(tipoNomeEndereco[1]);
+		}		
 	}
 
 }

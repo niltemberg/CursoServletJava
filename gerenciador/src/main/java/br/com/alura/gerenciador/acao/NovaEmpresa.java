@@ -16,7 +16,7 @@ import br.com.alura.gerenciador.modelo.Empresa;
 
 public class NovaEmpresa {
 	
-	public void executa(HttpServletRequest request, HttpServletResponse response) 
+	public String executa(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
 		Date dataAbertura = null;
@@ -40,7 +40,10 @@ public class NovaEmpresa {
 		request.setAttribute("nomeEmpresa", empresa.getNome());
 		request.setAttribute("dataAbertura", empresa.getDataAbertura());
 		
-		response.sendRedirect("entrada?acao=ListaEmpresas");
+		return "redirect:entrada?acao=ListaEmpresas";
+		
+		
+		//response.sendRedirect("entrada?acao=ListaEmpresas");
 		
 //		//chamando o JSP
 //		RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas");
